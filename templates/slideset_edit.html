@@ -96,18 +96,18 @@
           |
           <span class="button"><a href="{{ request.uri|escape }}&amp;output=slide">View as Slideshow</a></span>
         </div>
-        
+
         <span class="button">
           <input type="button" value="New slide" onclick="newSlide()"/>
         </span>
-        
+
         <span class="button"><input id="delete_button" name="action"
           type="submit"
           value="Delete slide" onclick="return confirm('Are you sure you want to permanently delete the selected slide?')"/></span>
-          
+
         </div>
       </div>
-      
+
       <div id="slidemain" style="position:relative; width:100%; height: 600px;">
        <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" style="height:600px;">
          <tbody>
@@ -119,7 +119,7 @@
             <td id="centertable" style="padding: 10px;" >
               <div id="slideeditor"></div>
               <div id="slidepreview">
-               <header><h1 id="previewtitle"></h1><h1 id="previewsubtitle"></h1></header> 
+               <header><h1 id="previewtitle"></h1><h1 id="previewsubtitle"></h1></header>
                <section id="previewcontent" class="content">
                <p>Welcome to the new interface. You can rearrange slides by dragging the icons in the sidebar and select a given slide by clicking its title. As you edit the slide, you'll see an instant preview of what the HTML looks like (though not within the specified template). To delete a slide, select it and click 'Delete slide'. To insert a new slide (at the bottom), click 'New slide'.</p>
                <p><b>Tip:</b> To make it easy to escape code snippets on your slides, install the <a href="https://chrome.google.com/extensions/detail/keclieijlpebdohhelcbgncgdgifopbb/publish-accepted">HTML Escaper</a> extension for Chrome.</p>
@@ -130,7 +130,7 @@
          </tbody>
        </table>
       </div>
-          
+
     </div>
   </form>
 
@@ -215,7 +215,7 @@ goog.require('goog.net.XhrIo');
 function Slide(setKey, key, type, title, subtitle, content) {
   this.setKey_ = setKey;
   this.key_ = key;
-  this.type_ = type; 
+  this.type_ = type;
   this.title_ = title;
   this.subtitle_ = subtitle || '';
   this.content_ = content.replace(/NEWLINE/g, '\n') || '';
@@ -261,14 +261,14 @@ Slide.prototype.attachToDOM = function(container) {
   typeImg.style.marginRight = '10px';
   typeImg.alt = 'Drag to reorder slides';
   typeImg.src = '/static/images/type_' + this.type_ + '.png';
-  
+
   var header = this.createElement_('label', element);
   header.style.fontWeight = 'bold';
   header.style.cursor = 'pointer';
   header.className = 'slidelabel';
   header.innerHTML = (this.title_ != '') ? this.title_ : '(Untitled)';
   this.sidebarTitle_ = header;
-  
+
   var hiddenInput = this.createElement_('input', element);
   hiddenInput.type = 'radio';
   hiddenInput.value = this.key_;
@@ -276,7 +276,7 @@ Slide.prototype.attachToDOM = function(container) {
   hiddenInput.checked = false;
   hiddenInput.style.display = 'none';
   this.hiddenInput_ = hiddenInput;
-  
+
   goog.events.listen(header, goog.events.EventType.CLICK, this.showSlide, false, this);
   //goog.style.setUnselectable(element, false);
   this.element_ = element;
@@ -291,10 +291,10 @@ Slide.prototype.showSlide = function(e) {
   }
   this.sidebarTitle_.style.textDecoration = 'underline';
   this.hiddenInput_.checked = true;
-  
+
   var centerArea = document.getElementById('slideeditor');
   centerArea.innerHTML = '';
-  
+
   this.titleLabel_ = this.createElement_('label', centerArea);
   this.titleLabel_.innerHTML = 'Title: ';
   this.titleContainer_ = this.createElement_('input', centerArea);
@@ -319,7 +319,7 @@ Slide.prototype.showSlide = function(e) {
   }
   // Make content input
   if (this.type_ == Slide.TYPE_NORMAL) {
-   
+
     this.contentContainer_ = this.createElement_('textarea', centerArea);
     this.contentContainer_.style.width = '100%';
     goog.events.listen(this.contentContainer_, goog.events.EventType.KEYUP, goog.bind(this.updatePreview_, this));
@@ -327,7 +327,7 @@ Slide.prototype.showSlide = function(e) {
     goog.events.listen(this.contentContainer_, goog.events.EventType.MOUSEDOWN, goog.events.Event.stopPropagation);
     this.contentContainer_.value = this.content_ || '';
     this.contentContainer_.style.height = Math.min(this.contentContainer_.scrollHeight, document.getElementById('container').clientHeight/3) + 'px';
-    
+
   }
   this.updatePreview_();
 }
@@ -354,7 +354,7 @@ Slide.prototype.updatePreview_ = function() {
 // edit on Return, cancel the edit on escape.
 Slide.prototype.onEditKeyPress_ = function(e) {
 
-  
+
   if (e.keyCode == 13) {
     goog.events.Event.stopPropagation(e);
     this.saveEdit_();
@@ -385,7 +385,7 @@ Slide.prototype.save = function() {
     window.setTimeout(this.save(), 2000);
     return;
   }
-  
+
   // Find index by figuring out which element it is beneath its parent
   var parentNode = this.element_.parentNode;
   for (var child = parentNode.firstChild, i = 0; child != null; child = child.nextSibling, i++) {

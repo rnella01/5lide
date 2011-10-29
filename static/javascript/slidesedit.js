@@ -12,7 +12,7 @@ goog.require('goog.net.XhrIo');
 function Slide(setKey, key, type, title, subtitle, content) {
   this.setKey_ = setKey;
   this.key_ = key;
-  this.type_ = type; 
+  this.type_ = type;
   this.title_ = title;
   this.subtitle_ = subtitle || '';
   this.content_ = content.replace(/NEWLINE/g, '\n') || '';
@@ -59,7 +59,7 @@ Slide.prototype.attachToDOM = function(container) {
   goog.events.listen(typeImg, goog.events.EventType.CLICK, function() {
     /*
     var centerArea = document.getElementById('centertable');
-    
+
     this.titleContainer_ = this.createElement_('input', centerArea);
     this.titleContainer_.style.position = 'relative';
     this.titleContainer_.value = this.title_ || '';
@@ -86,7 +86,7 @@ Slide.prototype.attachToDOM = function(container) {
     goog.style.setUnselectable(element, false);
     */
   });
-  
+
   this.element_ = element;
   return element;
 }
