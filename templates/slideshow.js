@@ -95,7 +95,7 @@
   var canTransition = (function() {
   var ver = parseFloat(ua.split('Version/')[1]) || undefined;
   // test to determine if this browser can handle CSS transitions.
-  var cachedCanTransition = 
+  var cachedCanTransition =
     (isWK || (isFF && isFF > 3.6 ) || (isOpera && ver >= 10.5));
     return function() { return cachedCanTransition; }
   })();
@@ -215,15 +215,15 @@
     }catch (e) { /* squeltch */ }
     this.current = isNaN(this.current) ? 1 : this.current;
     var _t = this;
-    doc.addEventListener('keydown', 
+    doc.addEventListener('keydown',
         function(e) { _t.handleKeys(e); }, false);
-    doc.addEventListener('mousewheel', 
+    doc.addEventListener('mousewheel',
         function(e) { _t.handleWheel(e); }, false);
-    doc.addEventListener('DOMMouseScroll', 
+    doc.addEventListener('DOMMouseScroll',
         function(e) { _t.handleWheel(e); }, false);
-    doc.addEventListener('touchstart', 
+    doc.addEventListener('touchstart',
         function(e) { _t.handleTouchStart(e); }, false);
-    doc.addEventListener('touchend', 
+    doc.addEventListener('touchend',
         function(e) { _t.handleTouchEnd(e); }, false);
     window.addEventListener('popstate',
         function(e) { _t.go(e.state); }, false);
@@ -299,9 +299,9 @@
       }
     },
     handleKeys: function(e) {
-      
+
       if (/^(input|textarea)$/i.test(e.target.nodeName)) return;
-      
+
       switch (e.keyCode) {
         case 37: // left arrow
           this.prev(); break;

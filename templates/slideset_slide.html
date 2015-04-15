@@ -1,11 +1,11 @@
-<html> 
-  <head> 
+<html>
+  <head>
     <!--[if gte IE 9]>
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <![endif]--> 
+    <![endif]-->
     <!--[if lt IE 9]>
       <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
-    <![endif]--> 
+    <![endif]-->
     <meta charset="utf-8" />
     <title>{{slide_set.name}}</title>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono|Tangerine" rel="stylesheet" type="text/css" />
@@ -46,9 +46,9 @@ header h1 {
       <link href="/static/css/confetti.css" rel="stylesheet" type="text/css" media="projection, screen"/>
       <script src="/static/javascript/confetti.js"></script>
     {% endifequal %}
-  </head> 
-  <body> 
-  
+  </head>
+  <body>
+
   <div id="topinfo">
     {% if user %}
     <span class="item nickname">{{ user.nickname }}</span> |
@@ -67,52 +67,52 @@ header h1 {
     {% endif %}
     </p>
   </div>
-  
+
   <div id="info">
     <p>Press <span class="key">&rarr;</span> key to advance.
     Zoom in/out: <span class="key">Ctrl or Command</span> + <span class="key">+/-</span>.
     </p>
   </div>
-  
+
   <div id="presentation">
-  
+
    <div id="presentation-counter"></div>
-      
+
    <div id="slides">
    {% for slide in slides %}
     {% ifequal slide.type 'intro' %}
     <div class="slide intro">
-     <header><hgroup> 
-      <h1>{{slide.title|escape}}</h1> 
+     <header><hgroup>
+      <h1>{{slide.title|escape}}</h1>
       <h2>{{slide.subtitle|escape}}</h2>
      </hgroup></header>
-    </div> 
+    </div>
     {% endifequal %}
     {% ifequal slide.type 'section' %}
-    <div class="slide section"> 
+    <div class="slide section">
      <header><h1>{{slide.title|escape}}</header>
-    </div> 
+    </div>
     {% endifequal %}
     {% ifequal slide.type 'normal' %}
-    <div class="slide normal"> 
-     <header><h1>{{slide.title|escape}}</h1></header> 
-     <section class="content"> 
+    <div class="slide normal">
+     <header><h1>{{slide.title|escape}}</h1></header>
+     <section class="content">
      {{slide.content}}
      </section>
     </div>
     {% endifequal %}
    {% endfor %}
    </div>
-   
+
   </div>
-  
+
   <script>
   {% include "slideshow.js" %}
   </script>
   <!--[if lt IE 9]>
-  <script 
+  <script
   src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
   <script>CFInstall.check({ mode: "overlay" });</script>
-  <![endif]--> 
-  </body> 
+  <![endif]-->
+  </body>
 </html>
